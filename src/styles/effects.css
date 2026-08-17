@@ -229,3 +229,191 @@
     opacity: 1;
   }
 }
+
+/* Combat Matrix Table & Interactive Rules */
+.modal-content.rules-modal {
+  max-width: 880px;
+}
+
+.rules-tab-bar {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.rules-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mincho);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.rules-tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rules-tab-btn.active {
+  color: var(--text-gold);
+  border-color: var(--accent-gold);
+  background: rgba(201, 151, 56, 0.15);
+}
+
+.combat-matrix-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  background: #14141a;
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.combat-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.combat-matrix-table th, .combat-matrix-table td {
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.combat-matrix-table thead th {
+  position: sticky;
+  top: 0;
+  background: #1e1e28;
+  color: var(--text-gold);
+  font-weight: 700;
+  z-index: 5;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.combat-matrix-table tbody th {
+  position: sticky;
+  left: 0;
+  background: #1e1e28;
+  color: var(--text-gold);
+  font-weight: 700;
+  z-index: 4;
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.combat-matrix-table thead th:first-child {
+  left: 0;
+  z-index: 6;
+  background: #252532;
+}
+
+.combat-matrix-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.matrix-cell {
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.matrix-cell.cell-win {
+  color: #4cd964;
+  background: rgba(76, 217, 100, 0.08);
+}
+
+.matrix-cell.cell-lose {
+  color: #ff4d4d;
+  opacity: 0.55;
+}
+
+.matrix-cell.cell-draw {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.08);
+}
+
+/* Piece Inspector for 1-click lookup */
+.piece-inspect-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.piece-inspect-chip {
+  padding: 5px 10px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.piece-inspect-chip:hover, .piece-inspect-chip.active {
+  background: var(--accent-gold);
+  color: #121214;
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(201, 151, 56, 0.4);
+}
+
+.piece-inspect-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid rgba(201, 151, 56, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.inspect-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inspect-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.inspect-pill {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.inspect-pill.win {
+  background: rgba(76, 217, 100, 0.15);
+  border: 1px solid #4cd964;
+  color: #4cd964;
+}
+
+.inspect-pill.lose {
+  background: rgba(255, 59, 48, 0.15);
+  border: 1px solid #ff3b30;
+  color: #ff6b6b;
+}
+
+.inspect-pill.draw {
+  background: rgba(255, 204, 0, 0.15);
+  border: 1px solid #ffcc00;
+  color: #ffd700;
+}
