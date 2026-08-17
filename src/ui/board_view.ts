@@ -183,7 +183,7 @@ export class BoardView {
 
     const info = PIECE_DEFINITIONS[piece.type];
     const kanji = document.createElement('span');
-    kanji.className = 'piece-kanji';
+    kanji.className = `piece-kanji length-${info.kanji.length}`;
     kanji.textContent = info.kanji;
     body.appendChild(kanji);
 

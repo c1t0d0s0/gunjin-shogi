@@ -68,27 +68,50 @@
 /* Kanji Typography */
 .piece-kanji {
   font-family: var(--font-antique);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 900;
   color: #1a120b;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-  line-height: 1.1;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.05em;
+  line-height: 1.0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 80%;
+  pointer-events: none;
+}
+
+/* 3文字の駒（タンク、スパイ、飛行機）のサイズ最適化 */
+.piece-kanji.length-3 {
+  font-size: 0.78rem;
   letter-spacing: -0.02em;
+  line-height: 0.95;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 600px) {
   .piece-kanji {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  .piece-kanji.length-3 {
+    font-size: 0.58rem;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    transform: translateY(-1px);
   }
 }
 
 .piece-owner-badge {
   position: absolute;
-  bottom: 4px;
-  font-size: 0.55rem;
+  bottom: 2px;
+  font-size: 0.5rem;
   font-weight: 700;
-  padding: 1px 4px;
+  padding: 0 3px;
   border-radius: 2px;
+  opacity: 0.85;
 }
 
 .shogi-piece.sente .piece-owner-badge {
