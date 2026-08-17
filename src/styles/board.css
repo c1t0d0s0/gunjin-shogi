@@ -1,0 +1,191 @@
+/* Board Container & Board Styles */
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.shogi-board-frame {
+  padding: 16px;
+  background: #3e2617;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(214, 163, 108, 0.15) 0%, rgba(30, 15, 5, 0.8) 100%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 4px);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.7);
+  border: 2px solid #5a381e;
+}
+
+.shogi-board {
+  display: grid;
+  grid-template-columns: repeat(6, 68px);
+  grid-template-rows: repeat(8, 76px);
+  background: var(--wood-board);
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  border: 2px solid var(--wood-line);
+  box-shadow: inset 0 0 20px rgba(92, 56, 28, 0.4);
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .shogi-board {
+    grid-template-columns: repeat(6, 50px);
+    grid-template-rows: repeat(8, 56px);
+  }
+}
+
+.board-cell {
+  position: relative;
+  border-right: 1px solid var(--wood-line);
+  border-bottom: 1px solid var(--wood-line);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.board-cell:nth-child(6n) {
+  border-right: none;
+}
+
+.board-cell:nth-last-child(-n + 6) {
+  border-bottom: none;
+}
+
+/* Headquarter (総司令部) styling */
+.board-cell.hq-cell {
+  background: rgba(201, 151, 56, 0.25);
+  box-shadow: inset 0 0 12px rgba(201, 151, 56, 0.4);
+}
+
+.board-cell.hq-cell::before {
+  content: '総司令部';
+  position: absolute;
+  font-family: var(--font-antique);
+  font-size: 0.65rem;
+  color: rgba(92, 56, 28, 0.4);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  font-weight: 700;
+}
+
+/* River (川 / 境界) Styling between Row 3 & Row 4 */
+.river-boundary {
+  position: absolute;
+  top: calc(50% - 3px);
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--accent-river);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+/* Entry point markers (突入口 / 橋) */
+.entry-marker {
+  position: absolute;
+  top: calc(50% - 8px);
+  height: 16px;
+  width: calc(100% / 6);
+  background: linear-gradient(180deg, #d32830 0%, #8f171d 100%);
+  border: 1px solid #ff757a;
+  border-radius: 3px;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.entry-marker.col-1 {
+  left: calc(100% / 6 * 1);
+}
+
+.entry-marker.col-4 {
+  left: calc(100% / 6 * 4);
+}
+
+/* Move Highlights */
+.board-cell.valid-move-target {
+  background: rgba(229, 185, 88, 0.35);
+}
+
+.board-cell.valid-move-target::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-gold) 0%, transparent 80%);
+  box-shadow: 0 0 10px var(--accent-gold);
+  pointer-events: none;
+  animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+.board-cell.valid-attack-target {
+  background: rgba(229, 77, 83, 0.45);
+}
+
+.board-cell.valid-attack-target::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px dashed #ff4d4d;
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+  pointer-events: none;
+  animation: rotate-attack 3s infinite linear;
+}
+
+.board-cell.selected-piece-cell {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 0 12px rgba(201, 151, 56, 0.8);
+}
+
+.board-cell.last-move-from {
+  background: rgba(201, 151, 56, 0.15);
+}
+
+.board-cell.last-move-to {
+  background: rgba(201, 151, 56, 0.3);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-attack {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

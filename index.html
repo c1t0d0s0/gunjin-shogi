@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>軍人将棋 (行軍将棋) - 23枚型ブラウザ対戦</title>
+    <meta
+      name="description"
+      content="Webブラウザで本格的に楽しめる23枚型の伝統ボードゲーム「軍人将棋（行軍将棋）」。審判による秘密の勝敗判定、フォグ・オブ・ウォーAIとの心理戦、定石布陣プリセット、推理メモ、感想戦リプレイ機能を搭載。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;900&family=Zen+Antique+Soft&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <link rel="stylesheet" href="./src/styles/board.css" />
+    <link rel="stylesheet" href="./src/styles/pieces.css" />
+    <link rel="stylesheet" href="./src/styles/effects.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="app-title-group">
+          <h1 class="app-title">軍人将棋</h1>
+          <span class="app-subtitle">二十三枚型 ｜ 行軍将棋</span>
+        </div>
+
+        <div class="app-controls">
+          <button id="btn-sound-toggle" class="btn btn-icon" title="効果音のON/OFF">
+            🔊
+          </button>
+          <button id="btn-rules" class="btn" title="ルール・勝敗表を確認">
+            📖 ルール
+          </button>
+          <button id="btn-settings" class="btn" title="難易度・設定">
+            ⚙️ 設定
+          </button>
+          <button id="btn-new-game" class="btn btn-primary" title="初期配置に戻す">
+            🔄 新規対局
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <main class="main-layout">
+        <!-- Left Column: Setup & Bench -->
+        <aside id="setup-container"></aside>
+
+        <!-- Center Column: Gunjin Shogi Board -->
+        <section id="board-container" class="board-wrapper"></section>
+
+        <!-- Right Column: Status & History Panel -->
+        <aside id="history-container"></aside>
+      </main>
+    </div>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
